@@ -44,7 +44,6 @@
         </developer>
     </developers>
 
-
     <scm>
         <url>https://github.com/ineedahouse/top-algorithm-set</url>
         <connection>https://github.com/ineedahouse/top-algorithm-set.git</connection>
