@@ -14,7 +14,7 @@ Top-algorithm-set is a tool-set of data mining algorithm.You can use this tool-s
 - [maven][1]
 - [the latest JAR][2]
 
-[1]: https://repo1.maven.org/maven2/com/alibaba/fastjson/
+[1]: https://repo1.maven.org/maven2/com/github/ineedahouse/top-algorithm-set/
 [2]: https://search.maven.org/remote_content?g=com.github.ineedahouse&amp;a=top-algorithm-set&amp;v=LATEST
 
 ## Maven
