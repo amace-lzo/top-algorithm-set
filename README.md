@@ -1,8 +1,6 @@
 # top-algorithm-set
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.ineedahouse/top-algorithm-set.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.ineedahouse%22%20AND%20a:%22top-algorithm-set%22)
-
-[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.ineedahouse/top-algorithm-set.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.ineedahouse%22%20AND%20a:%22top-algorithm-set%22)  [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 Top-algorithm-set is a tool-set of data mining algorithm.You can use this tool-set in your java project.In this tool-set we provide BP-NeuralNetwork algorithm ,and a matrix class now.You can use BP-NeuralNetwork(BPNN) to create BPNN models and make predictions.We will release other common algorithms.If you have any questions or suggestions,please tell me.
 
