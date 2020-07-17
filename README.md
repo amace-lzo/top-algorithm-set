@@ -29,5 +29,5 @@ Top-algorithm-set is a tool-set of data mining algorithm.You can use this tool-s
 
 ### *License*
 
-Top-algorithm-set is released under the [Apache 2.0 license](license.txt).
+Top-algorithm-set is released under the [Apache 2.0 license](LICENSE).
 
