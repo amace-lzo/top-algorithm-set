@@ -27,6 +27,12 @@ Top-algorithm-set is a tool-set of data mining algorithm.You can use this tool-s
 </dependency>
 ```
 
+## Document And Guide
+- [BPNeuralNetwork][1]
+
+[1]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/bpnn/BPNeuralNetwork.md
+
+
 ### *License*
 
 Top-algorithm-set is released under the [Apache 2.0 license](LICENSE).
