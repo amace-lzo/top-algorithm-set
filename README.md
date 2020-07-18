@@ -28,7 +28,7 @@ Top-algorithm-set is a tool-set of data mining algorithm.You can use this tool-s
 ```
 
 ## Document And Guide
-- [Matrix] [3]
+- [Matrix][3]
 - [BPNeuralNetwork][4]
 
 [3]: https://github.com/ineedahouse/top-algorithm-set-doc/tree/master/doc/Matrix
