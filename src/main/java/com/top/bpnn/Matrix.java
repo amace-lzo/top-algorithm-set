@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 public class Matrix implements Serializable {
     private double[][] matrix;
+    //矩阵列数
     private int matrixColNums;
+    //矩阵行数
     private int matrixRowNums;
 
     /**
@@ -345,6 +347,30 @@ public class Matrix implements Serializable {
             for (int j = 0; j < matrixColNums; j++) {
                 result[j][i] = matrix[i][j];
             }
+        }
+        return new Matrix(result);
+    }
+
+    /**
+     * 截取矩阵
+     * @param startRowIndex 开始行索引
+     * @param rowNums   截取行数
+     * @param startColIndex 开始列索引
+     * @param colNums   截取列数
+     * @return
+     * @throws Exception
+     */
+    public Matrix subMatrix(int startRowIndex,int rowNums,int startColIndex,int colNums) throws Exception {
+        if (startRowIndex + rowNums > matrixRowNums) {
+            throw new Exception("行索引越界");
+        }
+        if (startColIndex + colNums> matrixColNums) {
+            throw new Exception("列索引越界");
+        }
+        double[][] result = new double[rowNums][colNums];
+        for (int i = startRowIndex; i < startRowIndex + rowNums; i++) {
+            if (startColIndex + colNums - startColIndex >= 0)
+                System.arraycopy(matrix[i], startColIndex, result[i - startRowIndex], 0, colNums);
         }
         return new Matrix(result);
     }
