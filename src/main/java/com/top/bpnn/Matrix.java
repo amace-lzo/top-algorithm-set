@@ -1,6 +1,7 @@
 package com.top.bpnn;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Matrix implements Serializable {
     private double[][] matrix;
@@ -168,7 +169,7 @@ public class Matrix implements Serializable {
     }
 
     /**
-     * 二维数组乘一个数字
+     * 矩阵乘一个数字
      *
      * @param a
      * @return
@@ -212,6 +213,25 @@ public class Matrix implements Serializable {
     }
 
     /**
+     * 矩阵除一个数字
+     * @param a
+     * @return
+     * @throws Exception
+     */
+    public Matrix divide(double a) throws Exception {
+        if (matrix == null) {
+            throw new Exception("矩阵为空");
+        }
+        double[][] result = new double[matrixRowNums][matrixColNums];
+        for (int i = 0; i < matrixRowNums; i++) {
+            for (int j = 0; j < matrixColNums; j++) {
+                result[i][j] = matrix[i][j] / a;
+            }
+        }
+        return new Matrix(result);
+    }
+
+    /**
      * 矩阵加法
      *
      * @param a
@@ -237,6 +257,25 @@ public class Matrix implements Serializable {
     }
 
     /**
+     * 矩阵加一个数字
+     * @param a
+     * @return
+     * @throws Exception
+     */
+    public Matrix plus(double a) throws Exception {
+        if (matrix == null) {
+            throw new Exception("矩阵为空");
+        }
+        double[][] result = new double[matrixRowNums][matrixColNums];
+        for (int i = 0; i < matrixRowNums; i++) {
+            for (int j = 0; j < matrixColNums; j++) {
+                result[i][j] = matrix[i][j] + a;
+            }
+        }
+        return new Matrix(result);
+    }
+
+    /**
      * 矩阵减法
      *
      * @param a
@@ -256,6 +295,25 @@ public class Matrix implements Serializable {
         for (int i = 0; i < matrixRowNums; i++) {
             for (int j = 0; j < matrixColNums; j++) {
                 result[i][j] = matrix[i][j] - a.getMatrix()[i][j];
+            }
+        }
+        return new Matrix(result);
+    }
+
+    /**
+     * 矩阵减一个数字
+     * @param a
+     * @return
+     * @throws Exception
+     */
+    public Matrix subtract(double a) throws Exception {
+        if (matrix == null) {
+            throw new Exception("矩阵为空");
+        }
+        double[][] result = new double[matrixRowNums][matrixColNums];
+        for (int i = 0; i < matrixRowNums; i++) {
+            for (int j = 0; j < matrixColNums; j++) {
+                result[i][j] = matrix[i][j] - a;
             }
         }
         return new Matrix(result);
@@ -291,7 +349,7 @@ public class Matrix implements Serializable {
         double[][] result = new double[1][matrixColNums];
         for (int i = 0; i < matrixRowNums; i++) {
             for (int j = 0; j < matrixColNums; j++) {
-                result[0][i] += matrix[i][j];
+                result[0][j] += matrix[i][j];
             }
         }
         return new Matrix(result);
@@ -373,6 +431,104 @@ public class Matrix implements Serializable {
                 System.arraycopy(matrix[i], startColIndex, result[i - startRowIndex], 0, colNums);
         }
         return new Matrix(result);
+    }
+
+    /**
+     * 矩阵合并
+     * @param direction 合并方向，1为横向，2为竖向
+     * @param a
+     * @return
+     * @throws Exception
+     */
+    public Matrix splice(int direction, Matrix a) throws Exception {
+        if (matrix == null) {
+            throw new Exception("矩阵为空");
+        }
+        if (a.getMatrix() == null) {
+            throw new Exception("参数矩阵为空");
+        }
+        if(direction == 1){
+            //横向拼接
+            if (matrixRowNums != a.getMatrixRowNums()) {
+                throw new Exception("矩阵行数不一致，无法拼接");
+            }
+            double[][] result = new double[matrixRowNums][matrixColNums + a.getMatrixColNums()];
+            for (int i = 0; i < matrixRowNums; i++) {
+                System.arraycopy(matrix[i],0,result[i],0,matrixColNums);
+                System.arraycopy(a.getMatrix()[i],0,result[i],matrixColNums,a.getMatrixColNums());
+            }
+            return new Matrix(result);
+        }else if(direction == 2){
+            //纵向拼接
+            if (matrixColNums != a.getMatrixColNums()) {
+                throw new Exception("矩阵列数不一致，无法拼接");
+            }
+            double[][] result = new double[matrixRowNums + a.getMatrixRowNums()][matrixColNums];
+            for (int i = 0; i < matrixRowNums; i++) {
+                result[i] = matrix[i];
+            }
+            for (int i = 0; i < a.getMatrixRowNums(); i++) {
+                result[matrixRowNums + i] = a.getMatrix()[i];
+            }
+            return new Matrix(result);
+        }else{
+            throw new Exception("方向参数有误");
+        }
+    }
+    /**
+     * 扩展矩阵
+     * @param direction 扩展方向，1为横向，2为竖向
+     * @param a
+     * @return
+     * @throws Exception
+     */
+    public Matrix extend(int direction , int a) throws Exception {
+        if (matrix == null) {
+            throw new Exception("矩阵为空");
+        }
+        if(direction == 1){
+            //横向复制
+            double[][] result = new double[matrixRowNums][matrixColNums*a];
+            for (int i = 0; i < matrixRowNums; i++) {
+                for (int j = 0; j < a; j++) {
+                    System.arraycopy(matrix[i],0,result[i],j*matrixColNums,matrixColNums);
+                }
+            }
+            return new Matrix(result);
+        }else if(direction == 2){
+            //纵向复制
+            double[][] result = new double[matrixRowNums*a][matrixColNums];
+            for (int i = 0; i < matrixRowNums*a; i++) {
+                result[i] = matrix[i%matrixRowNums];
+            }
+            return new Matrix(result);
+        }else{
+            throw new Exception("方向参数有误");
+        }
+    }
+    /**
+     * 获取每列的平均值
+     * @return
+     * @throws Exception
+     */
+    public Matrix getColAvg() throws Exception {
+        Matrix tmp = this.sumCol();
+        return tmp.divide(matrixRowNums);
+    }
+
+    /**
+     * 获取协方差矩阵
+     * @return
+     * @throws Exception
+     */
+    public Matrix getCovariance() throws Exception {
+        if (matrix == null) {
+            throw new Exception("矩阵为空");
+        }
+        Matrix tmp = new Matrix(matrix);
+        Matrix avg = this.getColAvg().extend(2, matrixRowNums);
+        Matrix tmp2 = tmp.subtract(avg);
+        return tmp2.transpose().multiple(tmp2).multiple(1/((double) matrixRowNums -1));
     }
 
     @Override
