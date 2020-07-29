@@ -43,16 +43,9 @@ public class BPNeuralNetworkFactory {
         Matrix deltaB10 = new Matrix(1, hiddenNum);
         Matrix deltaB20 = new Matrix(1, outputNum);
 
-        Matrix input = new Matrix(new double[inputAndOutput.getMatrixRowNums()][inputNum]);
-        Matrix output = new Matrix(new double[inputAndOutput.getMatrixRowNums()][outputNum]);
-        for (int i = 0; i < inputAndOutput.getMatrixRowNums(); i++) {
-            for (int j = 0; j < inputNum; j++) {
-                input.getMatrix()[i][j] = inputAndOutput.getValOfIdx(i,j);
-            }
-            for (int j = 0; j < inputAndOutput.getMatrixColNums() - inputNum; j++) {
-                output.getMatrix()[i][j] = inputAndOutput.getValOfIdx(i,inputNum+j);
-            }
-        }
+        //截取输入矩阵和输出矩阵
+        Matrix input = inputAndOutput.subMatrix(0,inputAndOutput.getMatrixRowNums(),0,inputNum);
+        Matrix output = inputAndOutput.subMatrix(0,inputAndOutput.getMatrixRowNums(),inputNum,outputNum);
 
         //归一化
         Map<String,Object> inputAfterNormalize = normalize(input, normalizationMin, normalizationMax);
@@ -75,24 +68,16 @@ public class BPNeuralNetworkFactory {
             /*-----------------正向传播---------------------*/
             //隐含层输入
             Matrix jIn = input.multiple(weightIJ);
-            double[][] b1CopyArr = new double[jIn.getMatrixRowNums()][b1.getMatrixRowNums()];
             //扩充阈值
-            for (int i = 0; i < jIn.getMatrixRowNums(); i++) {
-                b1CopyArr[i] = b1.getMatrix()[0];
-            }
-            Matrix b1Copy = new Matrix(b1CopyArr);
+            Matrix b1Copy = b1.extend(2,jIn.getMatrixRowNums());
             //加上阈值
             jIn = jIn.plus(b1Copy);
             //隐含层输出
             Matrix jOut = computeValue(jIn,activationFunction);
             //输出层输入
             Matrix pIn = jOut.multiple(weightJP);
-            double[][] b2CopyArr = new double[pIn.getMatrixRowNums()][b2.getMatrixRowNums()];
             //扩充阈值
-            for (int i = 0; i < pIn.getMatrixRowNums(); i++) {
-                b2CopyArr[i] = b2.getMatrix()[0];
-            }
-            Matrix b2Copy = new Matrix(b2CopyArr);
+            Matrix b2Copy = b2.extend(2, pIn.getMatrixRowNums());
             //加上阈值
             pIn = pIn.plus(b2Copy);
             //输出层输出
@@ -186,24 +171,16 @@ public class BPNeuralNetworkFactory {
         }
         Matrix normalizedInputMatrix = new Matrix(normalizedInput);
         Matrix jIn = normalizedInputMatrix.multiple(weightIJ);
-        double[][] b1CopyArr = new double[jIn.getMatrixRowNums()][b1.getMatrixRowNums()];
         //扩充阈值
-        for (int i = 0; i < jIn.getMatrixRowNums(); i++) {
-            b1CopyArr[i] = b1.getMatrix()[0];
-        }
-        Matrix b1Copy = new Matrix(b1CopyArr);
+        Matrix b1Copy = b1.extend(2,jIn.getMatrixRowNums());
         //加上阈值
         jIn = jIn.plus(b1Copy);
         //隐含层输出
         Matrix jOut = computeValue(jIn,activationFunction);
         //输出层输入
         Matrix pIn = jOut.multiple(weightJP);
-        double[][] b2CopyArr = new double[pIn.getMatrixRowNums()][b2.getMatrixRowNums()];
         //扩充阈值
-        for (int i = 0; i < pIn.getMatrixRowNums(); i++) {
-            b2CopyArr[i] = b2.getMatrix()[0];
-        }
-        Matrix b2Copy = new Matrix(b2CopyArr);
+        Matrix b2Copy = b1.extend(2,pIn.getMatrixRowNums());
         //加上阈值
         pIn = pIn.plus(b2Copy);
         //输出层输出
