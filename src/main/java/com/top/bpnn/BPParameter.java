@@ -5,11 +5,11 @@ import java.io.Serializable;
 public class BPParameter implements Serializable {
 
     //输入层神经元个数
-    private int inputLayerNeuronNum = 3;
+    private int inputLayerNeuronCount = 3;
     //隐含层神经元个数
-    private int hiddenLayerNeuronNum = 3;
+    private int hiddenLayerNeuronCount = 3;
     //输出层神经元个数
-    private int outputLayerNeuronNum = 1;
+    private int outputLayerNeuronCount = 1;
     //归一化区间
     private double normalizationMin = 0.2;
     private double normalizationMax = 0.8;
@@ -56,28 +56,28 @@ public class BPParameter implements Serializable {
         this.normalizationMax = normalizationMax;
     }
 
-    public int getInputLayerNeuronNum() {
-        return inputLayerNeuronNum;
+    public int getInputLayerNeuronCount() {
+        return inputLayerNeuronCount;
     }
 
-    public void setInputLayerNeuronNum(int inputLayerNeuronNum) {
-        this.inputLayerNeuronNum = inputLayerNeuronNum;
+    public void setInputLayerNeuronCount(int inputLayerNeuronCount) {
+        this.inputLayerNeuronCount = inputLayerNeuronCount;
     }
 
-    public int getHiddenLayerNeuronNum() {
-        return hiddenLayerNeuronNum;
+    public int getHiddenLayerNeuronCount() {
+        return hiddenLayerNeuronCount;
     }
 
-    public void setHiddenLayerNeuronNum(int hiddenLayerNeuronNum) {
-        this.hiddenLayerNeuronNum = hiddenLayerNeuronNum;
+    public void setHiddenLayerNeuronCount(int hiddenLayerNeuronCount) {
+        this.hiddenLayerNeuronCount = hiddenLayerNeuronCount;
     }
 
-    public int getOutputLayerNeuronNum() {
-        return outputLayerNeuronNum;
+    public int getOutputLayerNeuronCount() {
+        return outputLayerNeuronCount;
     }
 
-    public void setOutputLayerNeuronNum(int outputLayerNeuronNum) {
-        this.outputLayerNeuronNum = outputLayerNeuronNum;
+    public void setOutputLayerNeuronCount(int outputLayerNeuronCount) {
+        this.outputLayerNeuronCount = outputLayerNeuronCount;
     }
 
     public ActivationFunction getActivationFunction() {

@@ -1,5 +1,7 @@
 package com.top.bpnn;
 
+import com.top.matrix.Matrix;
+
 import java.io.Serializable;
 
 public class BPModel implements Serializable {

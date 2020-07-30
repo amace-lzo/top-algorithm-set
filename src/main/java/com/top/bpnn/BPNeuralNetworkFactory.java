@@ -1,5 +1,7 @@
 package com.top.bpnn;
 
+import com.top.matrix.Matrix;
+
 import java.io.*;
 import java.util.*;
 
@@ -16,9 +18,9 @@ public class BPNeuralNetworkFactory {
         result.setBpParameter(bpParameter);
 
         ActivationFunction activationFunction = bpParameter.getActivationFunction();
-        int inputNum = bpParameter.getInputLayerNeuronNum();
-        int hiddenNum = bpParameter.getHiddenLayerNeuronNum();
-        int outputNum = bpParameter.getOutputLayerNeuronNum();
+        int inputCount = bpParameter.getInputLayerNeuronCount();
+        int hiddenCount = bpParameter.getHiddenLayerNeuronCount();
+        int outputCount = bpParameter.getOutputLayerNeuronCount();
         double normalizationMin = bpParameter.getNormalizationMin();
         double normalizationMax = bpParameter.getNormalizationMax();
         double step = bpParameter.getStep();
@@ -26,26 +28,26 @@ public class BPNeuralNetworkFactory {
         double precision = bpParameter.getPrecision();
         int maxTimes = bpParameter.getMaxTimes();
 
-        if(inputAndOutput.getMatrixColNums() != inputNum + outputNum){
+        if(inputAndOutput.getMatrixColCount() != inputCount + outputCount){
             throw new Exception("神经元个数不符，请修改");
         }
         //初始化权值
-        Matrix weightIJ = initWeight(inputNum, hiddenNum);
-        Matrix weightJP = initWeight(hiddenNum, outputNum);
+        Matrix weightIJ = initWeight(inputCount, hiddenCount);
+        Matrix weightJP = initWeight(hiddenCount, outputCount);
 
         //初始化阈值
-        Matrix b1 = initThreshold(hiddenNum);
-        Matrix b2 = initThreshold(outputNum);
+        Matrix b1 = initThreshold(hiddenCount);
+        Matrix b2 = initThreshold(outputCount);
 
         //动量项
-        Matrix deltaWeightIJ0 = new Matrix(inputNum, hiddenNum);
-        Matrix deltaWeightJP0 = new Matrix(hiddenNum, outputNum);
-        Matrix deltaB10 = new Matrix(1, hiddenNum);
-        Matrix deltaB20 = new Matrix(1, outputNum);
+        Matrix deltaWeightIJ0 = new Matrix(inputCount, hiddenCount);
+        Matrix deltaWeightJP0 = new Matrix(hiddenCount, outputCount);
+        Matrix deltaB10 = new Matrix(1, hiddenCount);
+        Matrix deltaB20 = new Matrix(1, outputCount);
 
         //截取输入矩阵和输出矩阵
-        Matrix input = inputAndOutput.subMatrix(0,inputAndOutput.getMatrixRowNums(),0,inputNum);
-        Matrix output = inputAndOutput.subMatrix(0,inputAndOutput.getMatrixRowNums(),inputNum,outputNum);
+        Matrix input = inputAndOutput.subMatrix(0,inputAndOutput.getMatrixRowCount(),0,inputCount);
+        Matrix output = inputAndOutput.subMatrix(0,inputAndOutput.getMatrixRowCount(),inputCount,outputCount);
 
         //归一化
         Map<String,Object> inputAfterNormalize = normalize(input, normalizationMin, normalizationMax);
@@ -69,7 +71,7 @@ public class BPNeuralNetworkFactory {
             //隐含层输入
             Matrix jIn = input.multiple(weightIJ);
             //扩充阈值
-            Matrix b1Copy = b1.extend(2,jIn.getMatrixRowNums());
+            Matrix b1Copy = b1.extend(2,jIn.getMatrixRowCount());
             //加上阈值
             jIn = jIn.plus(b1Copy);
             //隐含层输出
@@ -77,7 +79,7 @@ public class BPNeuralNetworkFactory {
             //输出层输入
             Matrix pIn = jOut.multiple(weightJP);
             //扩充阈值
-            Matrix b2Copy = b2.extend(2, pIn.getMatrixRowNums());
+            Matrix b2Copy = b2.extend(2, pIn.getMatrixRowCount());
             //加上阈值
             pIn = pIn.plus(b2Copy);
             //输出层输出
@@ -152,7 +154,7 @@ public class BPNeuralNetworkFactory {
      * @return
      */
     public Matrix computeBP(BPModel bpModel,Matrix input) throws Exception {
-        if (input.getMatrixColNums() != bpModel.getBpParameter().getInputLayerNeuronNum()) {
+        if (input.getMatrixColCount() != bpModel.getBpParameter().getInputLayerNeuronCount()) {
             throw new Exception("输入矩阵纬度有误");
         }
         ActivationFunction activationFunction = bpModel.getBpParameter().getActivationFunction();
@@ -160,9 +162,9 @@ public class BPNeuralNetworkFactory {
         Matrix weightJP = bpModel.getWeightJP();
         Matrix b1 = bpModel.getB1();
         Matrix b2 = bpModel.getB2();
-        double[][] normalizedInput = new double[input.getMatrixRowNums()][input.getMatrixColNums()];
-        for (int i = 0; i < input.getMatrixRowNums(); i++) {
-            for (int j = 0; j < input.getMatrixColNums(); j++) {
+        double[][] normalizedInput = new double[input.getMatrixRowCount()][input.getMatrixColCount()];
+        for (int i = 0; i < input.getMatrixRowCount(); i++) {
+            for (int j = 0; j < input.getMatrixColCount(); j++) {
                 normalizedInput[i][j] = bpModel.getBpParameter().getNormalizationMin()
                         + (input.getValOfIdx(i,j) - bpModel.getInputMin().getValOfIdx(0,j))
                         / (bpModel.getInputMax().getValOfIdx(0,j) - bpModel.getInputMin().getValOfIdx(0,j))
@@ -172,7 +174,7 @@ public class BPNeuralNetworkFactory {
         Matrix normalizedInputMatrix = new Matrix(normalizedInput);
         Matrix jIn = normalizedInputMatrix.multiple(weightIJ);
         //扩充阈值
-        Matrix b1Copy = b1.extend(2,jIn.getMatrixRowNums());
+        Matrix b1Copy = b1.extend(2,jIn.getMatrixRowCount());
         //加上阈值
         jIn = jIn.plus(b1Copy);
         //隐含层输出
@@ -180,7 +182,7 @@ public class BPNeuralNetworkFactory {
         //输出层输入
         Matrix pIn = jOut.multiple(weightJP);
         //扩充阈值
-        Matrix b2Copy = b1.extend(2,pIn.getMatrixRowNums());
+        Matrix b2Copy = b1.extend(2,pIn.getMatrixRowCount());
         //加上阈值
         pIn = pIn.plus(b2Copy);
         //输出层输出
@@ -222,9 +224,9 @@ public class BPNeuralNetworkFactory {
         if (a.getMatrix() == null) {
             throw new Exception("参数值为空");
         }
-        double[][] result = new double[a.getMatrixRowNums()][a.getMatrixColNums()];
-        for (int i = 0; i < a.getMatrixRowNums(); i++) {
-            for (int j = 0; j < a.getMatrixColNums(); j++) {
+        double[][] result = new double[a.getMatrixRowCount()][a.getMatrixColCount()];
+        for (int i = 0; i < a.getMatrixRowCount(); i++) {
+            for (int j = 0; j < a.getMatrixColCount(); j++) {
                 result[i][j] = activationFunction.computeValue(a.getValOfIdx(i,j));
             }
         }
@@ -240,9 +242,9 @@ public class BPNeuralNetworkFactory {
         if (a.getMatrix() == null) {
             throw new Exception("参数值为空");
         }
-        double[][] result = new double[a.getMatrixRowNums()][a.getMatrixColNums()];
-        for (int i = 0; i < a.getMatrixRowNums(); i++) {
-            for (int j = 0; j < a.getMatrixColNums(); j++) {
+        double[][] result = new double[a.getMatrixRowCount()][a.getMatrixColCount()];
+        for (int i = 0; i < a.getMatrixRowCount(); i++) {
+            for (int j = 0; j < a.getMatrixColCount(); j++) {
                 result[i][j] = activationFunction.computeDerivative(a.getValOfIdx(i,j));
             }
         }
@@ -258,19 +260,19 @@ public class BPNeuralNetworkFactory {
      */
     private Map<String, Object> normalize(Matrix a, double normalizationMin, double normalizationMax) throws Exception {
         HashMap<String, Object> result = new HashMap<>();
-        double[][] maxArr = new double[1][a.getMatrixColNums()];
-        double[][] minArr = new double[1][a.getMatrixColNums()];
-        double[][] res = new double[a.getMatrixRowNums()][a.getMatrixColNums()];
-        for (int i = 0; i < a.getMatrixColNums(); i++) {
+        double[][] maxArr = new double[1][a.getMatrixColCount()];
+        double[][] minArr = new double[1][a.getMatrixColCount()];
+        double[][] res = new double[a.getMatrixRowCount()][a.getMatrixColCount()];
+        for (int i = 0; i < a.getMatrixColCount(); i++) {
             List tmp = new ArrayList();
-            for (int j = 0; j < a.getMatrixRowNums(); j++) {
+            for (int j = 0; j < a.getMatrixRowCount(); j++) {
                 tmp.add(a.getValOfIdx(j,i));
             }
             double max = (double) Collections.max(tmp);
             double min = (double) Collections.min(tmp);
             //数据归一化(注:若max与min均为0则不需要归一化)
             if (max != 0 || min != 0) {
-                for (int j = 0; j < a.getMatrixRowNums(); j++) {
+                for (int j = 0; j < a.getMatrixRowCount(); j++) {
                     res[j][i] = normalizationMin + (a.getValOfIdx(j,i) - min) / (max - min) * (normalizationMax - normalizationMin);
                 }
             }
@@ -293,11 +295,11 @@ public class BPNeuralNetworkFactory {
      * @return
      */
     private Matrix inverseNormalize(Matrix a, double normalizationMax, double normalizationMin , Matrix dataMax,Matrix dataMin) throws Exception {
-        double[][] res = new double[a.getMatrixRowNums()][a.getMatrixColNums()];
-        for (int i = 0; i < a.getMatrixColNums(); i++) {
+        double[][] res = new double[a.getMatrixRowCount()][a.getMatrixColCount()];
+        for (int i = 0; i < a.getMatrixColCount(); i++) {
             //数据反归一化
             if (dataMin.getValOfIdx(0,i) != 0 || dataMax.getValOfIdx(0,i) != 0) {
-                for (int j = 0; j < a.getMatrixRowNums(); j++) {
+                for (int j = 0; j < a.getMatrixRowCount(); j++) {
                     res[j][i] = dataMin.getValOfIdx(0,i) + (dataMax.getValOfIdx(0,i) - dataMin.getValOfIdx(0,i)) * (a.getValOfIdx(j,i) - normalizationMin) / (normalizationMax - normalizationMin);
                 }
             }
@@ -313,32 +315,5 @@ public class BPNeuralNetworkFactory {
     private double computeE(Matrix e) throws Exception {
         e = e.square();
         return 0.5*e.sumAll();
-    }
-
-    /**
-     * 将BP模型序列化到本地
-     * @param bpModel
-     * @throws IOException
-     */
-    public void serialize(BPModel bpModel,String path) throws IOException {
-        File file = new File(path);
-        System.out.println(file.getAbsolutePath());
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
-        out.writeObject(bpModel);
-        out.close();
-    }
-
-    /**
-     * 将BP模型反序列化
-     * @return
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-    public BPModel deSerialization(String path) throws IOException, ClassNotFoundException {
-        File file = new File(path);
-        ObjectInputStream oin = new ObjectInputStream(new FileInputStream(file));
-        BPModel bpModel = (BPModel) oin.readObject(); // 强制转换到BPModel类型
-        oin.close();
-        return bpModel;
     }
 }

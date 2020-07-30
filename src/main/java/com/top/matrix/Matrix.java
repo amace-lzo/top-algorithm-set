@@ -1,22 +1,21 @@
-package com.top.bpnn;
+package com.top.matrix;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class Matrix implements Serializable {
     private double[][] matrix;
     //矩阵列数
-    private int matrixColNums;
+    private int matrixColCount;
     //矩阵行数
-    private int matrixRowNums;
+    private int matrixRowCount;
 
     /**
      * 构造一个空矩阵
      */
     public Matrix() {
         this.matrix = null;
-        this.matrixColNums = 0;
-        this.matrixRowNums = 0;
+        this.matrixColCount = 0;
+        this.matrixRowCount = 0;
     }
 
     /**
@@ -25,43 +24,43 @@ public class Matrix implements Serializable {
      */
     public Matrix(double[][] matrix) {
         this.matrix = matrix;
-        this.matrixRowNums = matrix.length;
-        this.matrixColNums = matrix[0].length;
+        this.matrixRowCount = matrix.length;
+        this.matrixColCount = matrix[0].length;
     }
 
     /**
-     * 构造一个rowNums行colNums列值为0的矩阵
-     * @param rowNums
-     * @param colNums
+     * 构造一个rowCount行colCount列值为0的矩阵
+     * @param rowCount
+     * @param colCount
      */
-    public Matrix(int rowNums,int colNums) {
-        double[][] matrix = new double[rowNums][colNums];
-        for (int i = 0; i < rowNums; i++) {
-            for (int j = 0; j < colNums; j++) {
+    public Matrix(int rowCount,int colCount) {
+        double[][] matrix = new double[rowCount][colCount];
+        for (int i = 0; i < rowCount; i++) {
+            for (int j = 0; j < colCount; j++) {
                 matrix[i][j] = 0;
             }
         }
         this.matrix = matrix;
-        this.matrixRowNums = rowNums;
-        this.matrixColNums = colNums;
+        this.matrixRowCount = rowCount;
+        this.matrixColCount = colCount;
     }
 
     /**
-     * 构造一个rowNums行colNums列值为val的矩阵
+     * 构造一个rowCount行colCount列值为val的矩阵
      * @param val
-     * @param rowNums
-     * @param colNums
+     * @param rowCount
+     * @param colCount
      */
-    public Matrix(double val,int rowNums,int colNums) {
-        double[][] matrix = new double[rowNums][colNums];
-        for (int i = 0; i < rowNums; i++) {
-            for (int j = 0; j < colNums; j++) {
+    public Matrix(double val,int rowCount,int colCount) {
+        double[][] matrix = new double[rowCount][colCount];
+        for (int i = 0; i < rowCount; i++) {
+            for (int j = 0; j < colCount; j++) {
                 matrix[i][j] = val;
             }
         }
         this.matrix = matrix;
-        this.matrixRowNums = rowNums;
-        this.matrixColNums = colNums;
+        this.matrixRowCount = rowCount;
+        this.matrixColCount = colCount;
     }
 
     public double[][] getMatrix() {
@@ -70,16 +69,16 @@ public class Matrix implements Serializable {
 
     public void setMatrix(double[][] matrix) {
         this.matrix = matrix;
-        this.matrixRowNums = matrix.length;
-        this.matrixColNums = matrix[0].length;
+        this.matrixRowCount = matrix.length;
+        this.matrixColCount = matrix[0].length;
     }
 
-    public int getMatrixColNums() {
-        return matrixColNums;
+    public int getMatrixColCount() {
+        return matrixColCount;
     }
 
-    public int getMatrixRowNums() {
-        return matrixRowNums;
+    public int getMatrixRowCount() {
+        return matrixRowCount;
     }
 
     /**
@@ -93,10 +92,10 @@ public class Matrix implements Serializable {
         if (matrix == null) {
             throw new Exception("矩阵为空");
         }
-        if (x > matrixRowNums - 1) {
+        if (x > matrixRowCount - 1) {
             throw new Exception("索引x越界");
         }
-        if (y > matrixColNums - 1) {
+        if (y > matrixColCount - 1) {
             throw new Exception("索引y越界");
         }
         return matrix[x][y];
@@ -112,10 +111,10 @@ public class Matrix implements Serializable {
         if (matrix == null) {
             throw new Exception("矩阵为空");
         }
-        if (x > matrixRowNums - 1) {
+        if (x > matrixRowCount - 1) {
             throw new Exception("索引x越界");
         }
-        double[][] result = new double[1][matrixColNums];
+        double[][] result = new double[1][matrixColCount];
         result[0] = matrix[x];
         return new Matrix(result);
     }
@@ -130,11 +129,11 @@ public class Matrix implements Serializable {
         if (matrix == null) {
             throw new Exception("矩阵为空");
         }
-        if (y > matrixColNums - 1) {
+        if (y > matrixColCount - 1) {
             throw new Exception("索引y越界");
         }
-        double[][] result = new double[matrixRowNums][1];
-        for (int i = 0; i < matrixRowNums; i++) {
+        double[][] result = new double[matrixRowCount][1];
+        for (int i = 0; i < matrixRowCount; i++) {
             result[i][1] = matrix[i][y];
         }
         return new Matrix(result);
@@ -154,13 +153,13 @@ public class Matrix implements Serializable {
         if (a.getMatrix() == null) {
             throw new Exception("参数矩阵为空");
         }
-        if (matrixColNums != a.getMatrixRowNums()) {
+        if (matrixColCount != a.getMatrixRowCount()) {
             throw new Exception("矩阵纬度不同，不可计算");
         }
-        double[][] result = new double[matrixRowNums][a.getMatrixColNums()];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < a.getMatrixColNums(); j++) {
-                for (int k = 0; k < matrixColNums; k++) {
+        double[][] result = new double[matrixRowCount][a.getMatrixColCount()];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < a.getMatrixColCount(); j++) {
+                for (int k = 0; k < matrixColCount; k++) {
                     result[i][j] = result[i][j] + matrix[i][k] * a.getMatrix()[k][j];
                 }
             }
@@ -178,9 +177,9 @@ public class Matrix implements Serializable {
         if (matrix == null) {
             throw new Exception("矩阵为空");
         }
-        double[][] result = new double[matrixRowNums][matrixColNums];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < matrixColNums; j++) {
+        double[][] result = new double[matrixRowCount][matrixColCount];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result[i][j] = matrix[i][j] * a;
             }
         }
@@ -200,12 +199,12 @@ public class Matrix implements Serializable {
         if (a.getMatrix() == null) {
             throw new Exception("参数矩阵为空");
         }
-        if (matrixRowNums != a.getMatrixRowNums() && matrixColNums != a.getMatrixColNums()) {
+        if (matrixRowCount != a.getMatrixRowCount() && matrixColCount != a.getMatrixColCount()) {
             throw new Exception("矩阵纬度不同，不可计算");
         }
-        double[][] result = new double[matrixRowNums][matrixColNums];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < matrixColNums; j++) {
+        double[][] result = new double[matrixRowCount][matrixColCount];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result[i][j] = matrix[i][j] * a.getMatrix()[i][j];
             }
         }
@@ -222,9 +221,9 @@ public class Matrix implements Serializable {
         if (matrix == null) {
             throw new Exception("矩阵为空");
         }
-        double[][] result = new double[matrixRowNums][matrixColNums];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < matrixColNums; j++) {
+        double[][] result = new double[matrixRowCount][matrixColCount];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result[i][j] = matrix[i][j] / a;
             }
         }
@@ -244,12 +243,12 @@ public class Matrix implements Serializable {
         if (a.getMatrix() == null) {
             throw new Exception("参数矩阵为空");
         }
-        if (matrixRowNums != a.getMatrixRowNums() && matrixColNums != a.getMatrixColNums()) {
+        if (matrixRowCount != a.getMatrixRowCount() && matrixColCount != a.getMatrixColCount()) {
             throw new Exception("矩阵纬度不同，不可计算");
         }
-        double[][] result = new double[matrixRowNums][matrixColNums];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < matrixColNums; j++) {
+        double[][] result = new double[matrixRowCount][matrixColCount];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result[i][j] = matrix[i][j] + a.getMatrix()[i][j];
             }
         }
@@ -266,9 +265,9 @@ public class Matrix implements Serializable {
         if (matrix == null) {
             throw new Exception("矩阵为空");
         }
-        double[][] result = new double[matrixRowNums][matrixColNums];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < matrixColNums; j++) {
+        double[][] result = new double[matrixRowCount][matrixColCount];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result[i][j] = matrix[i][j] + a;
             }
         }
@@ -288,12 +287,12 @@ public class Matrix implements Serializable {
         if (a.getMatrix() == null) {
             throw new Exception("参数矩阵为空");
         }
-        if (matrixRowNums != a.getMatrixRowNums() && matrixColNums != a.getMatrixColNums()) {
+        if (matrixRowCount != a.getMatrixRowCount() && matrixColCount != a.getMatrixColCount()) {
             throw new Exception("矩阵纬度不同，不可计算");
         }
-        double[][] result = new double[matrixRowNums][matrixColNums];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < matrixColNums; j++) {
+        double[][] result = new double[matrixRowCount][matrixColCount];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result[i][j] = matrix[i][j] - a.getMatrix()[i][j];
             }
         }
@@ -310,9 +309,9 @@ public class Matrix implements Serializable {
         if (matrix == null) {
             throw new Exception("矩阵为空");
         }
-        double[][] result = new double[matrixRowNums][matrixColNums];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < matrixColNums; j++) {
+        double[][] result = new double[matrixRowCount][matrixColCount];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result[i][j] = matrix[i][j] - a;
             }
         }
@@ -328,9 +327,9 @@ public class Matrix implements Serializable {
         if (matrix == null) {
             throw new Exception("矩阵为空");
         }
-        double[][] result = new double[matrixRowNums][1];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < matrixColNums; j++) {
+        double[][] result = new double[matrixRowCount][1];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result[i][1] += matrix[i][j];
             }
         }
@@ -346,9 +345,9 @@ public class Matrix implements Serializable {
         if (matrix == null) {
             throw new Exception("矩阵为空");
         }
-        double[][] result = new double[1][matrixColNums];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < matrixColNums; j++) {
+        double[][] result = new double[1][matrixColCount];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result[0][j] += matrix[i][j];
             }
         }
@@ -366,7 +365,7 @@ public class Matrix implements Serializable {
         }
         double result = 0;
         for (double[] doubles : matrix) {
-            for (int j = 0; j < matrixColNums; j++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result += doubles[j];
             }
         }
@@ -382,9 +381,9 @@ public class Matrix implements Serializable {
         if (matrix == null) {
             throw new Exception("矩阵为空");
         }
-        double[][] result = new double[matrixRowNums][matrixColNums];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < matrixColNums; j++) {
+        double[][] result = new double[matrixRowCount][matrixColCount];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result[i][j] = matrix[i][j] * matrix[i][j];
             }
         }
@@ -400,9 +399,9 @@ public class Matrix implements Serializable {
         if (matrix == null) {
             throw new Exception("矩阵为空");
         }
-        double[][] result = new double[matrixColNums][matrixRowNums];
-        for (int i = 0; i < matrixRowNums; i++) {
-            for (int j = 0; j < matrixColNums; j++) {
+        double[][] result = new double[matrixColCount][matrixRowCount];
+        for (int i = 0; i < matrixRowCount; i++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 result[j][i] = matrix[i][j];
             }
         }
@@ -412,23 +411,23 @@ public class Matrix implements Serializable {
     /**
      * 截取矩阵
      * @param startRowIndex 开始行索引
-     * @param rowNums   截取行数
+     * @param rowCount   截取行数
      * @param startColIndex 开始列索引
-     * @param colNums   截取列数
+     * @param colCount   截取列数
      * @return
      * @throws Exception
      */
-    public Matrix subMatrix(int startRowIndex,int rowNums,int startColIndex,int colNums) throws Exception {
-        if (startRowIndex + rowNums > matrixRowNums) {
+    public Matrix subMatrix(int startRowIndex,int rowCount,int startColIndex,int colCount) throws Exception {
+        if (startRowIndex + rowCount > matrixRowCount) {
             throw new Exception("行索引越界");
         }
-        if (startColIndex + colNums> matrixColNums) {
+        if (startColIndex + colCount> matrixColCount) {
             throw new Exception("列索引越界");
         }
-        double[][] result = new double[rowNums][colNums];
-        for (int i = startRowIndex; i < startRowIndex + rowNums; i++) {
-            if (startColIndex + colNums - startColIndex >= 0)
-                System.arraycopy(matrix[i], startColIndex, result[i - startRowIndex], 0, colNums);
+        double[][] result = new double[rowCount][colCount];
+        for (int i = startRowIndex; i < startRowIndex + rowCount; i++) {
+            if (startColIndex + colCount - startColIndex >= 0)
+                System.arraycopy(matrix[i], startColIndex, result[i - startRowIndex], 0, colCount);
         }
         return new Matrix(result);
     }
@@ -449,26 +448,26 @@ public class Matrix implements Serializable {
         }
         if(direction == 1){
             //横向拼接
-            if (matrixRowNums != a.getMatrixRowNums()) {
+            if (matrixRowCount != a.getMatrixRowCount()) {
                 throw new Exception("矩阵行数不一致，无法拼接");
             }
-            double[][] result = new double[matrixRowNums][matrixColNums + a.getMatrixColNums()];
-            for (int i = 0; i < matrixRowNums; i++) {
-                System.arraycopy(matrix[i],0,result[i],0,matrixColNums);
-                System.arraycopy(a.getMatrix()[i],0,result[i],matrixColNums,a.getMatrixColNums());
+            double[][] result = new double[matrixRowCount][matrixColCount + a.getMatrixColCount()];
+            for (int i = 0; i < matrixRowCount; i++) {
+                System.arraycopy(matrix[i],0,result[i],0,matrixColCount);
+                System.arraycopy(a.getMatrix()[i],0,result[i],matrixColCount,a.getMatrixColCount());
             }
             return new Matrix(result);
         }else if(direction == 2){
             //纵向拼接
-            if (matrixColNums != a.getMatrixColNums()) {
+            if (matrixColCount != a.getMatrixColCount()) {
                 throw new Exception("矩阵列数不一致，无法拼接");
             }
-            double[][] result = new double[matrixRowNums + a.getMatrixRowNums()][matrixColNums];
-            for (int i = 0; i < matrixRowNums; i++) {
+            double[][] result = new double[matrixRowCount + a.getMatrixRowCount()][matrixColCount];
+            for (int i = 0; i < matrixRowCount; i++) {
                 result[i] = matrix[i];
             }
-            for (int i = 0; i < a.getMatrixRowNums(); i++) {
-                result[matrixRowNums + i] = a.getMatrix()[i];
+            for (int i = 0; i < a.getMatrixRowCount(); i++) {
+                result[matrixRowCount + i] = a.getMatrix()[i];
             }
             return new Matrix(result);
         }else{
@@ -488,18 +487,18 @@ public class Matrix implements Serializable {
         }
         if(direction == 1){
             //横向复制
-            double[][] result = new double[matrixRowNums][matrixColNums*a];
-            for (int i = 0; i < matrixRowNums; i++) {
+            double[][] result = new double[matrixRowCount][matrixColCount*a];
+            for (int i = 0; i < matrixRowCount; i++) {
                 for (int j = 0; j < a; j++) {
-                    System.arraycopy(matrix[i],0,result[i],j*matrixColNums,matrixColNums);
+                    System.arraycopy(matrix[i],0,result[i],j*matrixColCount,matrixColCount);
                 }
             }
             return new Matrix(result);
         }else if(direction == 2){
             //纵向复制
-            double[][] result = new double[matrixRowNums*a][matrixColNums];
-            for (int i = 0; i < matrixRowNums*a; i++) {
-                result[i] = matrix[i%matrixRowNums];
+            double[][] result = new double[matrixRowCount*a][matrixColCount];
+            for (int i = 0; i < matrixRowCount*a; i++) {
+                result[i] = matrix[i%matrixRowCount];
             }
             return new Matrix(result);
         }else{
@@ -513,31 +512,24 @@ public class Matrix implements Serializable {
      */
     public Matrix getColAvg() throws Exception {
         Matrix tmp = this.sumCol();
-        return tmp.divide(matrixRowNums);
+        return tmp.divide(matrixRowCount);
     }
 
     /**
-     * 获取协方差矩阵
+     * 判断是否是方阵
      * @return
-     * @throws Exception
      */
-    public Matrix getCovariance() throws Exception {
-        if (matrix == null) {
-            throw new Exception("矩阵为空");
-        }
-        Matrix tmp = new Matrix(matrix);
-        Matrix avg = this.getColAvg().extend(2, matrixRowNums);
-        Matrix tmp2 = tmp.subtract(avg);
-        return tmp2.transpose().multiple(tmp2).multiple(1/((double) matrixRowNums -1));
+    public boolean isSquareMatrix(){
+        return matrixColCount == matrixRowCount;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\r\n");
-        for (int i = 0; i < matrixRowNums; i++) {
+        for (int i = 0; i < matrixRowCount; i++) {
             stringBuilder.append("# ");
-            for (int j = 0; j < matrixColNums; j++) {
+            for (int j = 0; j < matrixColCount; j++) {
                 stringBuilder.append(matrix[i][j]).append("\t ");
             }
             stringBuilder.append("#\r\n");
