@@ -1,6 +1,6 @@
 [English][5] | 中文
 
-[5]: https://github.com/ineedahouse/top-algorithm-set/blob/dev/README-zh.md
+[5]: https://github.com/ineedahouse/top-algorithm-set/blob/dev/README.md
 
 # top-algorithm-set
 
