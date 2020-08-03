@@ -1,6 +1,6 @@
 English | [中文][5]
 
-[5]: https://repo1.maven.org/maven2/com/github/ineedahouse/top-algorithm-set/
+[5]: https://repo1.maven.org/maven2/com/github/ineedahouse/top-algorithm-set/README-zh.md
 
 # top-algorithm-set
 
