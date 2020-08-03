@@ -1,7 +1,6 @@
 English | [中文][5]
 
-[5]: https://repo1.maven.org/maven2/com/github/ineedahouse/top-algorithm-set/blob/dev/README-zh.md
-
+[5]: https://github.com/ineedahouse/top-algorithm-set/blob/dev/README-zh.md
 # top-algorithm-set
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.ineedahouse/top-algorithm-set.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.ineedahouse%22%20AND%20a:%22top-algorithm-set%22)  [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
