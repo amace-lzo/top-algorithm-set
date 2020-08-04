@@ -30,7 +30,7 @@ public class MatrixUtil {
      * @throws Exception
      */
     public static Matrix inv(Matrix a) throws Exception {
-        if (a.getMatrixColCount() != a.getMatrixRowCount()) {
+        if (!invable(a)) {
             throw new Exception("矩阵不可逆");
         }
         // [a|E]
@@ -167,5 +167,20 @@ public class MatrixUtil {
         Matrix avg = a.getColAvg().extend(2, a.getMatrixRowCount());
         Matrix tmp = a.subtract(avg);
         return tmp.transpose().multiple(tmp).multiple(1/((double) a.getMatrixRowCount() -1));
+    }
+
+    /**
+     * 判断矩阵是否可逆
+     * 如果可转为上三角矩阵则可逆
+     * @param a
+     * @return
+     */
+    public static boolean invable(Matrix a) {
+        try {
+            getTopTriangle(a);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
