@@ -517,10 +517,11 @@ public class Matrix implements Serializable {
 
     /**
      * 判断是否是方阵
+     * 行列数相等，并且不等于0
      * @return
      */
     public boolean isSquareMatrix(){
-        return matrixColCount == matrixRowCount;
+        return matrixColCount == matrixRowCount && matrixColCount != 0;
     }
 
     @Override
