@@ -13,9 +13,6 @@ public class BPNeuralNetworkFactory {
      * @return
      */
     public BPModel trainBP(BPParameter bpParameter, Matrix inputAndOutput) throws Exception {
-        //BP神经网络的输出
-        BPModel result = new BPModel();
-        result.setBpParameter(bpParameter);
 
         ActivationFunction activationFunction = bpParameter.getActivationFunction();
         int inputCount = bpParameter.getInputLayerNeuronCount();
@@ -52,17 +49,9 @@ public class BPNeuralNetworkFactory {
         //归一化
         Map<String,Object> inputAfterNormalize = normalize(input, normalizationMin, normalizationMax);
         input = (Matrix) inputAfterNormalize.get("res");
-        Matrix inputMax = (Matrix) inputAfterNormalize.get("max");
-        Matrix inputMin = (Matrix) inputAfterNormalize.get("min");
-        result.setInputMax(inputMax);
-        result.setInputMin(inputMin);
 
         Map<String,Object> outputAfterNormalize = normalize(output, normalizationMin, normalizationMax);
         output = (Matrix) outputAfterNormalize.get("res");
-        Matrix outputMax = (Matrix) outputAfterNormalize.get("max");
-        Matrix outputMin = (Matrix) outputAfterNormalize.get("min");
-        result.setOutputMax(outputMax);
-        result.setOutputMin(outputMin);
 
         int times = 1;
         double E = 0;//误差
@@ -136,6 +125,12 @@ public class BPNeuralNetworkFactory {
             times++;
         }
 
+        //BP神经网络的输出
+        BPModel result = new BPModel();
+        result.setInputMax((Matrix) inputAfterNormalize.get("max"));
+        result.setInputMin((Matrix) inputAfterNormalize.get("min"));
+        result.setOutputMax((Matrix) outputAfterNormalize.get("max"));
+        result.setOutputMin((Matrix) outputAfterNormalize.get("min"));
         result.setWeightIJ(weightIJ);
         result.setWeightJP(weightJP);
         result.setB1(b1);
@@ -182,16 +177,13 @@ public class BPNeuralNetworkFactory {
         //输出层输入
         Matrix pIn = jOut.multiple(weightJP);
         //扩充阈值
-        Matrix b2Copy = b1.extend(2,pIn.getMatrixRowCount());
+        Matrix b2Copy = b2.extend(2,pIn.getMatrixRowCount());
         //加上阈值
         pIn = pIn.plus(b2Copy);
         //输出层输出
         Matrix pOut = computeValue(pIn,activationFunction);
         //反归一化
-        Matrix result = inverseNormalize(pOut, bpModel.getBpParameter().getNormalizationMax(), bpModel.getBpParameter().getNormalizationMin(), bpModel.getOutputMax(), bpModel.getOutputMin());
-
-        return result;
-
+        return inverseNormalize(pOut, bpModel.getBpParameter().getNormalizationMax(), bpModel.getBpParameter().getNormalizationMin(), bpModel.getOutputMax(), bpModel.getOutputMin());
     }
 
     //初始化权值
