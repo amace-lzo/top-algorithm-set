@@ -6,7 +6,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.ineedahouse/top-algorithm-set.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.ineedahouse%22%20AND%20a:%22top-algorithm-set%22)  [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-Top-algorithm-set是一个数据挖掘算法工具集。你可以在java项目中使用该数据集。我们目前在工具集中提供了BP神经网络算法，和矩阵工具类。你可以使用BP神经网络算法创建一个BP神经网络模型，用来进行预测。我们将发布其他一些常用算法，如果你有任何问题或者建议，请联系我们。
+Top-algorithm-set是一个简易轻量数据的数据挖掘算法工具集。你可以在java项目中使用该工具集。我们目前在工具集中提供了BP神经网络算法，和矩阵工具类。你可以使用BP神经网络算法创建一个BP神经网络模型，用来进行预测。我们将发布其他一些常用算法，如果你有任何问题或者建议，请联系我们。
 
 ## Top-algorithm-set 目的
 
