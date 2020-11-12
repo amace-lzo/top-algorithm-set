@@ -1,6 +1,9 @@
 package com.top.utils;
 
+import Jama.EigenvalueDecomposition;
 import com.top.matrix.Matrix;
+
+import java.util.*;
 
 public class MatrixUtil {
     /**
@@ -182,5 +185,101 @@ public class MatrixUtil {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    /**
+     * 获取矩阵的特征值矩阵，调用Jama中的getV方法
+     * @param a
+     * @return
+     */
+    public static Matrix getV(Matrix a) {
+        EigenvalueDecomposition eig = new EigenvalueDecomposition(new Jama.Matrix(a.getMatrix()));
+        return new Matrix(eig.getV().getArray());
+    }
+
+    /**
+     * 取特征值实部
+     * @param a
+     * @return
+     */
+    public double[] getRealEigenvalues(Matrix a){
+        EigenvalueDecomposition eig = new EigenvalueDecomposition(new Jama.Matrix(a.getMatrix()));
+        return eig.getRealEigenvalues();
+    }
+
+    /**
+     * 取特征值虚部
+     * @param a
+     * @return
+     */
+    public double[] getImagEigenvalues(Matrix a){
+        EigenvalueDecomposition eig = new EigenvalueDecomposition(new Jama.Matrix(a.getMatrix()));
+        return eig.getImagEigenvalues();
+    }
+
+    /**
+     * 取块对角特征值矩阵
+     * @param a
+     * @return
+     */
+    public static Matrix getD(Matrix a) {
+        EigenvalueDecomposition eig = new EigenvalueDecomposition(new Jama.Matrix(a.getMatrix()));
+        return new Matrix(eig.getD().getArray());
+    }
+
+    /**
+     * 数据归一化
+     * @param a 要归一化的数据
+     * @param normalizationMin  要归一化的区间下限
+     * @param normalizationMax  要归一化的区间上限
+     * @return
+     */
+    public static Map<String, Object> normalize(Matrix a, double normalizationMin, double normalizationMax) throws Exception {
+        HashMap<String, Object> result = new HashMap<>();
+        double[][] maxArr = new double[1][a.getMatrixColCount()];
+        double[][] minArr = new double[1][a.getMatrixColCount()];
+        double[][] res = new double[a.getMatrixRowCount()][a.getMatrixColCount()];
+        for (int i = 0; i < a.getMatrixColCount(); i++) {
+            List tmp = new ArrayList();
+            for (int j = 0; j < a.getMatrixRowCount(); j++) {
+                tmp.add(a.getValOfIdx(j,i));
+            }
+            double max = (double) Collections.max(tmp);
+            double min = (double) Collections.min(tmp);
+            //数据归一化(注:若max与min均为0则不需要归一化)
+            if (max != 0 || min != 0) {
+                for (int j = 0; j < a.getMatrixRowCount(); j++) {
+                    res[j][i] = normalizationMin + (a.getValOfIdx(j,i) - min) / (max - min) * (normalizationMax - normalizationMin);
+                }
+            }
+            maxArr[0][i] = max;
+            minArr[0][i] = min;
+        }
+        result.put("max", new Matrix(maxArr));
+        result.put("min", new Matrix(minArr));
+        result.put("res", new Matrix(res));
+        return result;
+    }
+
+    /**
+     * 反归一化
+     * @param a 要反归一化的数据
+     * @param normalizationMin 要反归一化的区间下限
+     * @param normalizationMax 要反归一化的区间上限
+     * @param dataMax   数据最大值
+     * @param dataMin   数据最小值
+     * @return
+     */
+    public static Matrix inverseNormalize(Matrix a, double normalizationMax, double normalizationMin , Matrix dataMax,Matrix dataMin){
+        double[][] res = new double[a.getMatrixRowCount()][a.getMatrixColCount()];
+        for (int i = 0; i < a.getMatrixColCount(); i++) {
+            //数据反归一化
+            if (dataMin.getValOfIdx(0,i) != 0 || dataMax.getValOfIdx(0,i) != 0) {
+                for (int j = 0; j < a.getMatrixRowCount(); j++) {
+                    res[j][i] = dataMin.getValOfIdx(0,i) + (dataMax.getValOfIdx(0,i) - dataMin.getValOfIdx(0,i)) * (a.getValOfIdx(j,i) - normalizationMin) / (normalizationMax - normalizationMin);
+                }
+            }
+        }
+        return new Matrix(res);
     }
 }
