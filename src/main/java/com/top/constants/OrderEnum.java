@@ -1,5 +1,8 @@
 package com.top.constants;
 
+/**
+ * 排序枚举类
+ */
 public enum OrderEnum {
 
     ASC(1,"升序"),
