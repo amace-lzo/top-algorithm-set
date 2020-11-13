@@ -6,7 +6,7 @@
 
     <groupId>com.top</groupId>
     <artifactId>top-algorithm-set</artifactId>
-    <version>1.1.1</version>
+    <version>v1.1.1</version>
     <packaging>jar</packaging>
 
     <name>top-algorithm-set</name>
