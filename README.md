@@ -34,10 +34,12 @@ Top-algorithm-set is a tool-set of data mining algorithm.If you are a java devel
 - [Matrix][3]
 - [BPNeuralNetwork][4]
 - [KNN][5]
+- [Utils][6]
 
 [3]: https://github.com/ineedahouse/top-algorithm-set-doc/tree/master/doc/Matrix/Matrix.md
 [4]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/bpnn/BPNeuralNetwork.md
 [5]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/knn/KNN.md
+[6]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/utils/index.md
 
 ### *License*
 
