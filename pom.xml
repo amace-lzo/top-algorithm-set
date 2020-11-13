@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.top</groupId>
+    <groupId>com.github.ineedahouse</groupId>
     <artifactId>top-algorithm-set</artifactId>
-    <version>v1.1.1</version>
+    <version>1.1.1</version>
     <packaging>jar</packaging>
 
     <name>top-algorithm-set</name>
@@ -44,7 +44,6 @@
         </developer>
     </developers>
 
-
     <scm>
         <url>https://github.com/ineedahouse/top-algorithm-set</url>
         <connection>https://github.com/ineedahouse/top-algorithm-set.git</connection>
@@ -53,10 +52,12 @@
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
+            <name>oss Snapshots Repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
             <id>ossrh</id>
+            <name>oss Staging Repository</name>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
