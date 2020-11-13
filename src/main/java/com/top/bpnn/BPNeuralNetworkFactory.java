@@ -137,6 +137,7 @@ public class BPNeuralNetworkFactory {
         result.setB2(b2);
         result.setError(E);
         result.setTimes(times);
+        result.setBpParameter(bpParameter);
         System.out.println("循环次数：" + times + "，误差：" + E);
 
         return result;
