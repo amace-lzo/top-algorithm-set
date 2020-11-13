@@ -27,7 +27,7 @@ Top-algorithm-set是一个简易轻量数据的数据挖掘算法工具集。如
 <dependency>
   <groupId>com.github.ineedahouse</groupId>
   <artifactId>top-algorithm-set</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2</version>
 </dependency>
 ```
 
@@ -36,10 +36,12 @@ Top-algorithm-set是一个简易轻量数据的数据挖掘算法工具集。如
 - [矩阵][3]
 - [BP神经网络][4]
 - [KNN][5]
+- [工具类][6]
 
 [3]: https://github.com/ineedahouse/top-algorithm-set-doc/tree/master/doc/Matrix/Matrix.md
 [4]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/bpnn/BPNeuralNetwork.md
 [5]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/knn/KNN.md
+[6]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/utils/index.md
 
 ### *许可*
 
