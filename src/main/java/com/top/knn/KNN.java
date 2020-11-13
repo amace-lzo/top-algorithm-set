@@ -2,6 +2,7 @@ package com.top.knn;
 
 import com.top.constants.OrderEnum;
 import com.top.matrix.Matrix;
+import com.top.utils.MatrixUtil;
 
 import java.util.*;
 
@@ -13,7 +14,7 @@ import java.util.*;
  * @create: 2020-10-13 22:03
  **/
 public class KNN {
-    public static Matrix classify(Matrix input, Matrix dataSet, Matrix labels, int k) {
+    public static Matrix classify(Matrix input, Matrix dataSet, Matrix labels, int k) throws Exception {
         if (dataSet.getMatrixRowCount() != labels.getMatrixRowCount()) {
             throw new IllegalArgumentException("矩阵训练集与标签维度不一致");
         }
@@ -23,6 +24,15 @@ public class KNN {
         if (dataSet.getMatrixRowCount() < k) {
             throw new IllegalArgumentException("训练集样本数小于k");
         }
+        // 归一化
+        int trainCount = dataSet.getMatrixRowCount();
+        int testCount = input.getMatrixRowCount();
+        Matrix trainAndTest = dataSet.splice(2, input);
+        Map<String, Object> normalize = MatrixUtil.normalize(trainAndTest, 0, 1);
+        trainAndTest = (Matrix) normalize.get("res");
+        dataSet = trainAndTest.subMatrix(0, trainCount, 0, trainAndTest.getMatrixColCount());
+        input = trainAndTest.subMatrix(0, testCount, 0, trainAndTest.getMatrixColCount());
+
         // 获取标签信息
         List<Double> labelList = new ArrayList<>();
         for (int i = 0; i < labels.getMatrixRowCount(); i++) {
