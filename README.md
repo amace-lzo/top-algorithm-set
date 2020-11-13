@@ -5,7 +5,7 @@ English | [中文][5]
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.ineedahouse/top-algorithm-set.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.ineedahouse%22%20AND%20a:%22top-algorithm-set%22)  [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-Top-algorithm-set is a tool-set of data mining algorithm.You can use this tool-set in your java project.In this tool-set we provide BP-NeuralNetwork algorithm ,and a matrix class now.You can use BP-NeuralNetwork(BPNN) to create BPNN models and make predictions.We will release other common algorithms.If you have any questions or suggestions,please tell me.
+Top-algorithm-set is a tool-set of data mining algorithm.If you are a java developer,you don't have to learn Python and other complex frameworks. You can use this tool-set in your java project.In this tool-set we provide BP-NeuralNetwork algorithm ,KNN and a matrix class now.You can use BP-NeuralNetwork(BPNN) to create BPNN models and make predictions.We will release other common algorithms.If you have any questions or suggestions,please tell me.
 
 ## Top-algorithm-set Goals
 
@@ -26,16 +26,18 @@ Top-algorithm-set is a tool-set of data mining algorithm.You can use this tool-s
 <dependency>
   <groupId>com.github.ineedahouse</groupId>
   <artifactId>top-algorithm-set</artifactId>
-  <version>1.0.1</version>
+  <version>1.1.1</version>
 </dependency>
 ```
 
 ## Document And Guide
 - [Matrix][3]
 - [BPNeuralNetwork][4]
+- [KNN][5]
 
 [3]: https://github.com/ineedahouse/top-algorithm-set-doc/tree/master/doc/Matrix/Matrix.md
 [4]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/bpnn/BPNeuralNetwork.md
+[5]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/knn/KNN.md
 
 ### *License*
 
