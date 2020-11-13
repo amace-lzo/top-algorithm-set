@@ -27,7 +27,7 @@ public class SerializationUtil {
     public static Object deSerialization(String path) throws IOException, ClassNotFoundException {
         File file = new File(path);
         ObjectInputStream oin = new ObjectInputStream(new FileInputStream(file));
-        Object object = oin.readObject(); // 强制转换到BPModel类型
+        Object object = oin.readObject();
         oin.close();
         return object;
     }
