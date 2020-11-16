@@ -1,6 +1,6 @@
-[English][5] | 中文
+[English][1] | 中文
 
-[5]: https://github.com/ineedahouse/top-algorithm-set/blob/dev/README.md
+[1]: https://github.com/ineedahouse/top-algorithm-set/blob/dev/README.md
 
 # top-algorithm-set
 
@@ -15,11 +15,11 @@ Top-algorithm-set是一个简易轻量数据的数据挖掘算法工具集。如
 
 ## 下载
 
-- [maven][1]
-- [最新版本JAR包][2]
+- [maven][2]
+- [最新版本JAR包][3]
 
-[1]: https://repo1.maven.org/maven2/com/github/ineedahouse/top-algorithm-set/
-[2]: https://search.maven.org/remote_content?g=com.github.ineedahouse&amp;a=top-algorithm-set&amp;v=LATEST
+[2]: https://repo1.maven.org/maven2/com/github/ineedahouse/top-algorithm-set/
+[3]: https://search.maven.org/remote_content?g=com.github.ineedahouse&amp;a=top-algorithm-set&amp;v=LATEST
 
 ## Maven
 
@@ -33,15 +33,15 @@ Top-algorithm-set是一个简易轻量数据的数据挖掘算法工具集。如
 
 ## 文档与指南
 
-- [矩阵][3]
-- [BP神经网络][4]
-- [KNN][5]
-- [工具类][6]
+- [矩阵][4]
+- [BP神经网络][5]
+- [KNN][6]
+- [工具类][7]
 
-[3]: https://github.com/ineedahouse/top-algorithm-set-doc/tree/master/doc/Matrix/Matrix.md
-[4]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/bpnn/BPNeuralNetwork.md
-[5]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/knn/KNN.md
-[6]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/utils/index.md
+[4]: https://github.com/ineedahouse/top-algorithm-set-doc/tree/master/doc/Matrix/Matrix.md
+[5]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/bpnn/BPNeuralNetwork.md
+[6]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/knn/KNN.md
+[7]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/utils/index.md
 
 ### *许可*
 
