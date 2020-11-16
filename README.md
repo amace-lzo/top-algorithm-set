@@ -1,6 +1,6 @@
-English | [中文][5]
+English | [中文][1]
 
-[5]: https://github.com/ineedahouse/top-algorithm-set/blob/dev/README-zh.md
+[1]: https://github.com/ineedahouse/top-algorithm-set/blob/dev/README-zh.md
 # top-algorithm-set
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.ineedahouse/top-algorithm-set.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.ineedahouse%22%20AND%20a:%22top-algorithm-set%22)  [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
@@ -14,11 +14,11 @@ Top-algorithm-set is a tool-set of data mining algorithm.If you are a java devel
 
 ## Download
 
-- [maven][1]
-- [the latest JAR][2]
+- [maven][2]
+- [the latest JAR][3]
 
-[1]: https://repo1.maven.org/maven2/com/github/ineedahouse/top-algorithm-set/
-[2]: https://search.maven.org/remote_content?g=com.github.ineedahouse&amp;a=top-algorithm-set&amp;v=LATEST
+[2]: https://repo1.maven.org/maven2/com/github/ineedahouse/top-algorithm-set/
+[3]: https://search.maven.org/remote_content?g=com.github.ineedahouse&amp;a=top-algorithm-set&amp;v=LATEST
 
 ## Maven
 
@@ -31,15 +31,15 @@ Top-algorithm-set is a tool-set of data mining algorithm.If you are a java devel
 ```
 
 ## Document And Guide
-- [Matrix][3]
-- [BPNeuralNetwork][4]
-- [KNN][5]
-- [Utils][6]
+- [Matrix][4]
+- [BPNeuralNetwork][5]
+- [KNN][6]
+- [Utils][7]
 
-[3]: https://github.com/ineedahouse/top-algorithm-set-doc/tree/master/doc/Matrix/Matrix.md
-[4]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/bpnn/BPNeuralNetwork.md
-[5]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/knn/KNN.md
-[6]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/utils/index.md
+[4]: https://github.com/ineedahouse/top-algorithm-set-doc/tree/master/doc/Matrix/Matrix.md
+[5]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/bpnn/BPNeuralNetwork.md
+[6]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/knn/KNN.md
+[7]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/utils/index.md
 
 ### *License*
 
