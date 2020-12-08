@@ -41,6 +41,12 @@ Top-algorithm-set is a tool-set of data mining algorithm.If you are a java devel
 [6]: https://github.com/ineedahouse/top-algorithm-set/wiki/knn
 [7]: https://github.com/ineedahouse/top-algorithm-set/wiki/utils_Index
 
+## Update Log
+
+[Update Log][8]
+
+[8]: https://github.com/ineedahouse/top-algorithm-set/wiki/update_content
+
 ### *License*
 
 Top-algorithm-set is released under the [Apache 2.0 license](LICENSE).
