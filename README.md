@@ -47,7 +47,7 @@ Top-algorithm-set是一个简易轻量数据的数据挖掘算法工具集。如
 
 [更新内容][8]
 
-[8]: https://github.com/ineedahouse/top-algorithm-set/wiki/update_content
+[8]: https://github.com/ineedahouse/top-algorithm-set/wiki/update_log
 
 ### *许可*
 
