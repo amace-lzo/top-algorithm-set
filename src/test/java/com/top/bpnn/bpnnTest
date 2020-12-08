@@ -49,7 +49,6 @@ public class bpnnTest {
             }
         }
         double correctRate = Double.valueOf(correct) / Double.valueOf(total);
-
         System.out.println(correctRate);
     }
 }
