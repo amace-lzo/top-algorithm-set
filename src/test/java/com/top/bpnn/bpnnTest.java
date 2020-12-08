@@ -7,11 +7,13 @@ import com.top.matrix.Matrix;
 import com.top.utils.CsvInfo;
 import com.top.utils.CsvUtil;
 import com.top.utils.SerializationUtil;
+import org.junit.Test;
 
 import java.util.Date;
 
 public class bpnnTest {
-    public static void main(String[] args) throws Exception {
+    @Test
+    public void test() throws Exception {
         //创建训练集矩阵
         CsvInfo csvInfo = CsvUtil.getCsvInfo(false, "E:\\jarTest\\trainData.csv");
         Matrix trainSet = csvInfo.toMatrix();
