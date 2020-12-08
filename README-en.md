@@ -1,6 +1,6 @@
 English | [中文][1]
 
-[1]: https://github.com/ineedahouse/top-algorithm-set/blob/dev/README-zh.md
+[1]: https://github.com/ineedahouse/top-algorithm-set/blob/dev/README.md
 # top-algorithm-set
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.ineedahouse/top-algorithm-set.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.ineedahouse%22%20AND%20a:%22top-algorithm-set%22)  [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
@@ -36,10 +36,10 @@ Top-algorithm-set is a tool-set of data mining algorithm.If you are a java devel
 - [KNN][6]
 - [Utils][7]
 
-[4]: https://github.com/ineedahouse/top-algorithm-set-doc/tree/master/doc/Matrix/Matrix.md
-[5]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/bpnn/BPNeuralNetwork.md
-[6]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/knn/KNN.md
-[7]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/utils/index.md
+[4]: https://github.com/ineedahouse/top-algorithm-set/wiki/matrix
+[5]: https://github.com/ineedahouse/top-algorithm-set/wiki/bpnn_BPNeuralNetwork
+[6]: https://github.com/ineedahouse/top-algorithm-set/wiki/knn
+[7]: https://github.com/ineedahouse/top-algorithm-set/wiki/utils_Index
 
 ### *License*
 
