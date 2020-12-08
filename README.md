@@ -1,6 +1,6 @@
 [English][1] | 中文
 
-[1]: https://github.com/ineedahouse/top-algorithm-set/blob/dev/README.md
+[1]: https://github.com/ineedahouse/top-algorithm-set/blob/dev/README-en.md
 
 # top-algorithm-set
 
@@ -38,10 +38,10 @@ Top-algorithm-set是一个简易轻量数据的数据挖掘算法工具集。如
 - [KNN][6]
 - [工具类][7]
 
-[4]: https://github.com/ineedahouse/top-algorithm-set-doc/tree/master/doc/Matrix/Matrix.md
-[5]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/bpnn/BPNeuralNetwork.md
-[6]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/knn/KNN.md
-[7]: https://github.com/ineedahouse/top-algorithm-set-doc/blob/master/doc/utils/index.md
+[4]: https://github.com/ineedahouse/top-algorithm-set/wiki/matrix
+[5]: https://github.com/ineedahouse/top-algorithm-set/wiki/bpnn_BPNeuralNetwork
+[6]: https://github.com/ineedahouse/top-algorithm-set/wiki/knn
+[7]: https://github.com/ineedahouse/top-algorithm-set/wiki/utils_Index
 
 ### *许可*
 
