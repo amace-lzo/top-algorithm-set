@@ -27,7 +27,7 @@ Top-algorithm-set是一个简易轻量数据的数据挖掘算法工具集。如
 <dependency>
   <groupId>com.github.ineedahouse</groupId>
   <artifactId>top-algorithm-set</artifactId>
-  <version>1.1.2</version>
+  <version>1.1.3</version>
 </dependency>
 ```
 
