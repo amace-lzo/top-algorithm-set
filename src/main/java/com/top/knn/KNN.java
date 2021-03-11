@@ -43,22 +43,19 @@ public class KNN {
 
         Matrix result = new Matrix(new double[input.getMatrixRowCount()][1]);
         for (int i = 0; i < input.getMatrixRowCount(); i++) {
-            // 求向量间的欧式距离
-            Matrix var1 = input.getRowOfIdx(i).extend(2, dataSet.getMatrixRowCount());
-            Matrix var2 = dataSet.subtract(var1);
-            Matrix var3 = var2.square();
-            Matrix var4 = var3.sumRow();
-            Matrix var5 = var4.pow(0.5);
-            // 距离矩阵合并上labels矩阵
-            Matrix var6 = var5.splice(1, labels);
+            // 计算向量间的欧式距离
+            // 将labels矩阵扩展
+            Matrix labelMatrixCopied = input.getRowOfIdx(i).extend(2, dataSet.getMatrixRowCount());
+            // 前面是计算欧氏距离，splice(1,labels)是将距离矩阵与labels矩阵合并
+            Matrix distanceMatrix = dataSet.subtract(labelMatrixCopied).square().sumRow().pow(0.5).splice(1, labels);
             // 将计算出的距离矩阵按照距离升序排序
-            var6.sort(0, OrderEnum.ASC);
+            distanceMatrix.sort(0, OrderEnum.ASC);
             // 遍历最近的k个变量
             Map<Double, Integer> map = new HashMap<>();
             for (int j = 0; j < k; j++) {
                 // 遍历标签种类数
                 for (Double label : labelList) {
-                    if (var6.getValOfIdx(j, 1) == label) {
+                    if (distanceMatrix.getValOfIdx(j, 1) == label) {
                         map.put(label, map.getOrDefault(label, 0) + 1);
                     }
                 }
