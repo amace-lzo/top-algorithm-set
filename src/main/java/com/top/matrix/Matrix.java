@@ -91,7 +91,7 @@ public class Matrix implements Serializable {
      * @return
      */
     public double getValOfIdx(int x, int y) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         if (x > matrixRowCount - 1) {
@@ -110,7 +110,7 @@ public class Matrix implements Serializable {
      * @return
      */
     public Matrix getRowOfIdx(int x) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         if (x > matrixRowCount - 1) {
@@ -128,7 +128,7 @@ public class Matrix implements Serializable {
      * @return
      */
     public Matrix getColOfIdx(int y) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         if (y > matrixColCount - 1) {
@@ -165,10 +165,10 @@ public class Matrix implements Serializable {
      * @throws IllegalArgumentException
      */
     public Matrix multiple(Matrix a) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
-        if (a.getMatrix() == null) {
+        if (a.getMatrix() == null || a.getMatrixRowCount() == 0 || a.getMatrixColCount() == 0) {
             throw new IllegalArgumentException("参数矩阵为空");
         }
         if (matrixColCount != a.getMatrixRowCount()) {
@@ -192,7 +192,7 @@ public class Matrix implements Serializable {
      * @return
      */
     public Matrix multiple(double a) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         double[][] result = new double[matrixRowCount][matrixColCount];
@@ -211,10 +211,10 @@ public class Matrix implements Serializable {
      * @return
      */
     public Matrix pointMultiple(Matrix a) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
-        if (a.getMatrix() == null) {
+        if (a.getMatrix() == null || a.getMatrixRowCount() == 0 || a.getMatrixColCount() == 0) {
             throw new IllegalArgumentException("参数矩阵为空");
         }
         if (matrixRowCount != a.getMatrixRowCount() && matrixColCount != a.getMatrixColCount()) {
@@ -236,7 +236,7 @@ public class Matrix implements Serializable {
      * @throws IllegalArgumentException
      */
     public Matrix divide(double a) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         double[][] result = new double[matrixRowCount][matrixColCount];
@@ -255,10 +255,10 @@ public class Matrix implements Serializable {
      * @return
      */
     public Matrix plus(Matrix a) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
-        if (a.getMatrix() == null) {
+        if (a.getMatrix() == null || a.getMatrixRowCount() == 0 || a.getMatrixColCount() == 0) {
             throw new IllegalArgumentException("参数矩阵为空");
         }
         if (matrixRowCount != a.getMatrixRowCount() && matrixColCount != a.getMatrixColCount()) {
@@ -280,7 +280,7 @@ public class Matrix implements Serializable {
      * @throws IllegalArgumentException
      */
     public Matrix plus(double a) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         double[][] result = new double[matrixRowCount][matrixColCount];
@@ -299,10 +299,10 @@ public class Matrix implements Serializable {
      * @return
      */
     public Matrix subtract(Matrix a) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
-        if (a.getMatrix() == null) {
+        if (a.getMatrix() == null || a.getMatrixRowCount() == 0 || a.getMatrixColCount() == 0) {
             throw new IllegalArgumentException("参数矩阵为空");
         }
         if (matrixRowCount != a.getMatrixRowCount() && matrixColCount != a.getMatrixColCount()) {
@@ -324,7 +324,7 @@ public class Matrix implements Serializable {
      * @throws IllegalArgumentException
      */
     public Matrix subtract(double a) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         double[][] result = new double[matrixRowCount][matrixColCount];
@@ -342,7 +342,7 @@ public class Matrix implements Serializable {
      * @return
      */
     public Matrix sumRow() throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         double[][] result = new double[matrixRowCount][1];
@@ -360,7 +360,7 @@ public class Matrix implements Serializable {
      * @return
      */
     public Matrix sumCol() throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         double[][] result = new double[1][matrixColCount];
@@ -378,7 +378,7 @@ public class Matrix implements Serializable {
      * @return
      */
     public double sumAll() throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         double result = 0;
@@ -396,7 +396,7 @@ public class Matrix implements Serializable {
      * @return
      */
     public Matrix square() throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         double[][] result = new double[matrixRowCount][matrixColCount];
@@ -414,7 +414,7 @@ public class Matrix implements Serializable {
      * @return
      */
     public Matrix pow(double n) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         double[][] result = new double[matrixRowCount][matrixColCount];
@@ -432,7 +432,7 @@ public class Matrix implements Serializable {
      * @return
      */
     public Matrix transpose() throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         double[][] result = new double[matrixColCount][matrixRowCount];
@@ -476,10 +476,10 @@ public class Matrix implements Serializable {
      * @throws IllegalArgumentException
      */
     public Matrix splice(int direction, Matrix a) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
-        if (a.getMatrix() == null) {
+        if (a.getMatrix() == null || a.getMatrixRowCount() == 0 || a.getMatrixColCount() == 0) {
             throw new IllegalArgumentException("参数矩阵为空");
         }
         if(direction == 1){
@@ -518,7 +518,7 @@ public class Matrix implements Serializable {
      * @throws IllegalArgumentException
      */
     public Matrix extend(int direction , int a) throws IllegalArgumentException {
-        if (matrix == null) {
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
             throw new IllegalArgumentException("矩阵为空");
         }
         if(direction == 1){
@@ -559,33 +559,13 @@ public class Matrix implements Serializable {
      * @throws IllegalArgumentException
      */
     public void sort(int index,OrderEnum order) throws IllegalArgumentException{
-        switch (order){
-            case ASC:
-                for (int i = 0; i < this.matrixRowCount; i++) {
-                    for (int j = 0; j < this.matrixRowCount - 1 - i; j++) {
-                        if (this.matrix[j][index] > this.matrix[j + 1][index]) {
-                            double[] tmp = this.matrix[j];
-                            this.matrix[j] = this.matrix[j + 1];
-                            this.matrix[j + 1] = tmp;
-                        }
-                    }
-                }
-                break;
-            case DESC:
-                for (int i = 0; i < this.matrixRowCount; i++) {
-                    for (int j = 0; j < this.matrixRowCount - 1 - i; j++) {
-                        if (this.matrix[j][index] < this.matrix[j + 1][index]) {
-                            double[] tmp = this.matrix[j];
-                            this.matrix[j] = this.matrix[j + 1];
-                            this.matrix[j + 1] = tmp;
-                        }
-                    }
-                }
-                break;
-            default:
-
+        if (matrix == null || matrixRowCount == 0 || matrixColCount == 0) {
+            throw new IllegalArgumentException("矩阵为空");
         }
-
+        if(index >= matrixColCount){
+            throw new IllegalArgumentException("排序索引index越界");
+        }
+        sort(index,order,0,this.matrixRowCount - 1);
     }
 
     /**
@@ -610,5 +590,57 @@ public class Matrix implements Serializable {
         }
         stringBuilder.append("\r\n");
         return stringBuilder.toString();
+    }
+
+    private void sort(int index,OrderEnum order,int start,int end){
+        if(start >= end){
+            return;
+        }
+        int tmp = partition(index,order,start,end);
+        sort(index,order, start, tmp - 1);
+        sort(index,order, tmp + 1, end);
+    }
+
+    private int partition(int index,OrderEnum order,int start,int end){
+        int l = start + 1,r = end;
+        double v = matrix[start][index];
+        switch (order){
+            case ASC:
+                while(true){
+                    while(matrix[r][index] >= v && r > start){
+                        r--;
+                    }
+                    while(matrix[l][index] <= v && l < end){
+                        l++;
+                    }
+                    if(l >= r){
+                        break;
+                    }
+                    double[] tmp = matrix[r];
+                    matrix[r] = matrix[l];
+                    matrix[l] = tmp;
+                }
+                break;
+            case DESC:
+                while(true){
+                    while(matrix[r][index] <= v && r > start){
+                        r--;
+                    }
+                    while(matrix[l][index] >= v && l < end){
+                        l++;
+                    }
+                    if(l >= r){
+                        break;
+                    }
+                    double[] tmp = matrix[r];
+                    matrix[r] = matrix[l];
+                    matrix[l] = tmp;
+                }
+                break;
+        }
+        double[] tmp = matrix[r];
+        matrix[r] = matrix[start];
+        matrix[start] = tmp;
+        return r;
     }
 }
