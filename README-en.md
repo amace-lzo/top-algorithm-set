@@ -26,7 +26,7 @@ Top-algorithm-set is a tool-set of data mining algorithm.If you are a java devel
 <dependency>
   <groupId>com.github.ineedahouse</groupId>
   <artifactId>top-algorithm-set</artifactId>
-  <version>1.1.2</version>
+  <version>1.1.3</version>
 </dependency>
 ```
 
