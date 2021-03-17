@@ -53,4 +53,21 @@ public class bpnnTest {
         double correctRate = Double.valueOf(correct) / Double.valueOf(total);
         System.out.println(correctRate);
     }
+    
+    /**
+     * 使用示例
+     * @throws Exception
+     */
+    @Test
+    public void bpnnUsing() throws Exception{
+        CsvInfo csvInfo = CsvUtil.getCsvInfo(false, "E:\\jarTest\\data.csv");
+        Matrix data = csvInfo.toMatrix();
+        //将BPModel反序列化
+        BPModel bpModel1 = (BPModel) SerializationUtil.deSerialization("test");
+        //创建工厂
+        BPNeuralNetworkFactory factory = new BPNeuralNetworkFactory();
+        Matrix result = factory.computeBP(bpModel1, data);
+        CsvUtil.createCsvFile(null,result,"E:\\jarTest\\computeResult.csv");
+    }
+    
 }
